@@ -9,17 +9,20 @@
 </head>
 <body>
     {% include "header/header.html"%}
-    <header>ESTO ES EL HEADER</header>
-    <h1>Pagina index con todos los datos</h1>
+  
+    <h1>Pagina index con los datos de STUDENTS</h1>
     
     <div>
-        <label>Nom: </label> {{nombre}}
+        <label>Nom: </label> {{estudiantes.name}}
     </div>
     <div>
-        <label>Cogom: </label> {{surname}}
+        <label>Cogom: </label> {{estudiantes.surname}}
     </div>
     <div>
-        <label>Edat: </label> {{age}}
+        <label>Edat: </label> {{estudiantes.age}}
+    </div>
+    <div>
+        <label>Clase: </label> {{estudiantes.clase}}
     </div>
     
 </body>

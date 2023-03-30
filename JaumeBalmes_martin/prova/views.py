@@ -1,15 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import loader
+from django.template import Context,loader
 
 def index(request):
+    professor = {"name":"Martín", "surname":"Casco", "age":"20"}
     template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    dades = template.render({'nombre':professor["name"], 'surname':professor["surname"], 'age':professor["age"]})
+    return HttpResponse(dades)
 
 def student(request):
-    template = loader.get_template('students.html')
-    return HttpResponse(template.render())
+    estudiantes = {"name":"Pepe", "surname":"Perales", "age":"25", "clase":"2"}
+    contexto = {'estudiantes': estudiantes}
+    return render(request, 'students.html', contexto)
 
 def teachers(request):
-    template = loader.get_template('students.html')
-    return HttpResponse(template.render())
+    profesores = {"name":"Juan", "surname":"Ronda", "age":"50", "asignatura":"matemáticas"}
+    context = {'profes': profesores}
+    return render(request,'teachers.html', context)
