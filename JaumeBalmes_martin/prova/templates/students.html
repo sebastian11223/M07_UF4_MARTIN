@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index template</title>
-
-</head>
-<body>
-    {% include "header/header.html"%}
+{% extends 'index.html' %}
   
+  
+    {% block content %}
     <h1>Pagina index con los datos de STUDENTS</h1>
+<h1>Alumno con id {{estudiantes.id}}</h1>
+
     
-    <div>
-        <label>Nom: </label> {{estudiantes.name}}
-    </div>
-    <div>
-        <label>Cogom: </label> {{estudiantes.surname}}
-    </div>
-    <div>
-        <label>Edat: </label> {{estudiantes.age}}
-    </div>
-    <div>
-        <label>Clase: </label> {{estudiantes.clase}}
-    </div>
-    
-</body>
-</html>
+    {% for s in estudiantes %}
+    <ul>
+    <li>Id: {{s.id}}</li>
+    <li>Nom:  <a href="student/{{s.id}}"> {{s.name}} </a> </li>
+    <li>Cognom: {{s.surname}}</li>
+    <li>Edat: {{s.age}}</li>
+    <li>Clase: {{s.clase}}</li>
+    </ul>
+    {% endfor %}
+
+
+
+
+{% endblock %}
+

@@ -9,18 +9,13 @@
 </head>
 <body>
     {% include "header/header.html"%}
-    <header>ESTO ES EL HEADER</header>
-    <h1>Pagina index con todos los datos</h1>
-    
-    <div>
-        <label>Nom: </label> {{nombre}}
-    </div>
-    <div>
-        <label>Cogom: </label> {{surname}}
-    </div>
-    <div>
-        <label>Edat: </label> {{age}}
-    </div>
-    
+
+
+    {% block content %}
+    <a href="/prova/teachers"> profesorado</a>
+    <a href="/prova/students"> alumnado</a>
+
+    {% endblock %}
+
 </body>
 </html>
