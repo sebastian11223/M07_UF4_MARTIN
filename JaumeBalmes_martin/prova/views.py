@@ -1,12 +1,43 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.contrib.auth import login
 from django.http import HttpResponse
 from django.template import Context,loader
+from .models import Alumnos
+from .models import Person
+from .models import Profesores
+# CRUD #####
 
-# def index(request):
-#     professor = {"name":"Martín", "surname":"Casco", "age":"20"}
-#     template = loader.get_template('index.html')
-#     dades = template.render({'nombre':professor["name"], 'surname':professor["surname"], 'age':professor["age"]})
-#     return HttpResponse(dades)
+
+
+def user_form(request):
+    form = PersonForm()
+
+    if request.method == 'POST':
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index_one')
+    context = {'form':form}
+    return render(request, 'form.html', context)
+
+
+
+def update_user(request, pk):
+    person = Person.objects.get(id = pk)
+    form = PersonForm(instance=person)
+
+    if request.metho == 'POST':
+          form = PersonForm(request.POST, instance=person)
+          if form.is_valid():
+                form.save()
+                return redirect('index_one')
+    context = {'form':form}
+    return render (request, 'form.html', context)
+
+
+# ##########
+
 
 def index(request):
 #    template = loader.get_template('index.html')
@@ -15,15 +46,6 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-# def student(request):
-#     estudiantes = {"name":"Pepe", "surname":"Perales", "age":"25", "clase":"2"}
-#     contexto = {'estudiantes': estudiantes}
-#     return render(request, 'students.html', contexto)
-
-# def teachers(request):
-#     profesores = {"name":"Juan", "surname":"Ronda", "age":"50", "asignatura":"matemáticas"}
-#     context = {'profes': profesores}
-#     return render(request,'teachers.html', context)
 
 
 def student(request):
