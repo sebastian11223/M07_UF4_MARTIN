@@ -6,18 +6,13 @@ from django.template import Context,loader
 from .models import Alumnos
 from .models import Person
 from .models import Profesores
+from .form import PersonForm 
 # CRUD #####
 
 
 
 def user_form(request):
     form = PersonForm()
-
-    if request.method == 'POST':
-        form = PersonForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index_one')
     context = {'form':form}
     return render(request, 'form.html', context)
 
