@@ -6,6 +6,7 @@ from django.template import Context,loader
 from .models import Alumnos
 from .models import Person
 from .models import Profesores
+from .form import PersonForm
 # CRUD #####
 
 
